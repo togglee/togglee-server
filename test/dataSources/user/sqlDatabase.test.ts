@@ -57,10 +57,7 @@ describe('sqlDatabase', () => {
     });
 
     test('should be able to login a user with correct password', async () => {
-      const result = await subject.validateCredentials(
-        userEmail,
-        userPassword
-      );
+      const result = await subject.validateCredentials(userEmail, userPassword);
       expect(result).toEqual(true);
     });
 
