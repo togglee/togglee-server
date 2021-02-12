@@ -16,9 +16,8 @@ if (process.env.NODE_ENV === 'production') {
   logger.add(
     new Loggly({
       subdomain: process.env.LOGS_SUBDOMAIN,
-      inputToken: process.env.LOGS_INPUT_TOKEN,
+      token: process.env.LOGS_INPUT_TOKEN,
       tags: ['togglee', 'server'],
-      isBulk: true,
       stripColors: true,
     })
   );
