@@ -1,0 +1,10 @@
+# import SimpleResponse from "simpleResponse.graphql"
+
+type Query {
+    empty: String
+}
+
+type Mutation {
+    createUser(email: String!, password: String!): SimpleResponse!
+    validateCredentialsUser(email: String!, password: String!): SimpleResponse!
+}
