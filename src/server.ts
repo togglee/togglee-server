@@ -26,14 +26,19 @@ class MyStream {
 }
 const stream = new MyStream();
 
+const origin = process.env.NODE_ENV === 'production' ? 'https://www.togglee.com' : 'http://localhost:3000'
+
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin
+}));
 app.use(
   auth({
     users: { admin: 'supersecret' },
   })
 );
 app.use(morgan('tiny', { stream }));
+
 
 server.applyMiddleware({ app });
 
