@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "81d5a8ab-f995-4f99-8f79-d01ec49c0230",
+		"_postman_id": "37fb401a-9300-4d24-ae6c-bdb70d35a140",
 		"name": "togglee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c515fe12-51e5-4cf4-8dc3-3e21eeb7d422",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -31,7 +30,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3be93c23-b212-4597-877d-c968558962a4",
 								"exec": [
 									"var uuid = require('uuid');",
 									"pm.environment.set(\"user_email\", `${uuid.v4()}@somewhere.com`);",
@@ -94,100 +92,12 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "create bidder",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ced5920b-c6e2-4cd1-b46f-a176190c514e",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"is expected response\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data.createBidder.success).to.eql(true);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "747f44f2-fe1b-4fbc-a618-ead01eccd781",
-								"exec": [
-									"var uuid = require('uuid');",
-									"pm.environment.set(\"bidder_email\", `${uuid.v4()}@somewhere.com`);",
-									"pm.environment.set(\"bidder_password\", uuid.v4());"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{password}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{username}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "isTest",
-								"type": "text",
-								"value": "true"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "mutation($email: String!, $password: String!){\n  createBidder(email: $email, password: $password){ \n      success\n  }\n}",
-								"variables": "{\n    \"email\": \"{{bidder_email}}\",\n    \"password\": \"{{bidder_password}}\"\n}"
-							},
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/graphql",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "37b91c2c-34f9-4f6a-896e-9ff264f3ccbf",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -197,27 +107,23 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6cd6a5ef-cd2c-4419-a17c-6b12737c81d1",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Query",
-			"item": [],
-			"protocolProfileBehavior": {}
+			"item": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "4ae75f9b-bac5-4efd-8964-66d46475e7c7",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -227,13 +133,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f0cb9072-cf0b-4aaa-998d-c05e9d3a14fb",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
