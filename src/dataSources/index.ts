@@ -5,7 +5,12 @@ import { DataConfig } from 'datasource-sql';
 console.log(process.env.DATABASE_URL);
 let sqlAPIConfig: DataConfig = {
   client: 'pg',
-  connection: process.env.DATABASE_URL,
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
   searchPath: 'salesforce,public',
   wrapIdentifier: (value) => value,
 };
