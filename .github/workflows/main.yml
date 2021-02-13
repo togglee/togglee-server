@@ -42,6 +42,10 @@ jobs:
       env:
         SERVICE_USERNAME: ${{ secrets.SERVICE_USERNAME }}
         SERVICE_PASSWORD: ${{ secrets.SERVICE_PASSWORD }}
+    - name: Wait Service to be operational
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '60s'
     - name: Run Integration
       uses: matt-ball/newman-action@master
       with:
