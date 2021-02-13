@@ -35,7 +35,6 @@ app.use(
 );
 app.use(morgan('tiny', { stream }));
 
-
 server.applyMiddleware({ app });
 
 app.listen({ port: process.env.PORT || 8080 }, () =>
