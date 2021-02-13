@@ -2,7 +2,7 @@ import { DataSource } from 'apollo-datasource';
 import SqlUserDatabase from './user/SqlDatabase';
 import { DataSources } from '../types/DataSources';
 import { DataConfig } from 'datasource-sql';
-console.log(process.env.DATABASE_URL);
+
 let sqlAPIConfig: DataConfig = {
   client: 'pg',
   connection: {
@@ -11,7 +11,7 @@ let sqlAPIConfig: DataConfig = {
       rejectUnauthorized: false,
     },
   },
-  searchPath: 'salesforce,public',
+  searchPath: ['salesforce', 'public'],
   wrapIdentifier: (value) => value,
 };
 
