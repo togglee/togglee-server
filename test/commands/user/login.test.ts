@@ -26,7 +26,7 @@ describe('validate credentials user', () => {
 
     beforeAll(async () => {
       sqlDataSource.validateCredentials.mockReset();
-      sqlDataSource.validateCredentials.mockResolvedValue(undefined);
+      sqlDataSource.validateCredentials.mockResolvedValue(true);
       result = await validateCredentials(
         getSqlDataSourceFromMock(),
         email,
