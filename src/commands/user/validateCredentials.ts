@@ -8,8 +8,7 @@ export default async function validateCredentials(
   password: string
 ): Promise<SimpleResponse> {
   try {
-    await dataSource.validateCredentials(email, password);
-    return { success: true };
+    return { success: await dataSource.validateCredentials(email, password) };
   } catch (error) {
     logger.error(error);
     return { success: false };
