@@ -1,5 +1,6 @@
 import { DataSource } from 'apollo-datasource';
 import SqlUserDatabase from './user/SqlDatabase';
+import SqlToggleDatabase from './toggle/SqlDatabase';
 import { DataSources } from '../types/DataSources';
 import { DataConfig } from 'datasource-sql';
 
@@ -25,7 +26,9 @@ if (process.env.NODE_ENV !== 'production')
   };
 
 const sqlUserAPI = new SqlUserDatabase(sqlAPIConfig) as DataSource;
+const sqlToggleAPI = new SqlToggleDatabase(sqlAPIConfig) as DataSource;
 
 export default {
   sqlUserAPI,
+  sqlToggleAPI,
 } as DataSources;
