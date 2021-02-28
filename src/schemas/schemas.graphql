@@ -1,4 +1,5 @@
 # import SimpleResponse from "simpleResponse.graphql"
+scalar Any
 
 type Query {
     empty: String
@@ -7,5 +8,5 @@ type Query {
 type Mutation {
     createUser(email: String!, password: String!): SimpleResponse!
     validateCredentialsUser(email: String!, password: String!): SimpleResponse!
-    upsertProject(name: : String!, owner: : String!, toggles: Array[Object]!): SimpleResponse!
+    upsertProject(name: String!, owner: String!, toggles: [Any]!): SimpleResponse!
 }
