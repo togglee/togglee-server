@@ -6,7 +6,7 @@ export default async function upsertToggle(
   dataSource: sqlProjectDatabase,
   name: string,
   owner: string,
-  toggles: any,
+  toggles: any, // eslint-disable-line
   isTestRequest: boolean
 ): Promise<SimpleResponse> {
   try {

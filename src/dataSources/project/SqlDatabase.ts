@@ -12,18 +12,18 @@ export default class SqlDatabase extends SQLDataSource {
   public async upsert(
     user: string,
     name: string,
-    toggles: any,
+    toggles: any, // eslint-disable-line
     isTestRequest: boolean
   ): Promise<void> {
     const id = v4();
     await this.db
-    .insert({
-      id,
-      name,
-      user,
-      toggles,
-      isTest: isTestRequest ? 1 : 0,
-    })
-    .into('PROJECTS');
+      .insert({
+        id,
+        name,
+        user,
+        toggles,
+        isTest: isTestRequest ? 1 : 0,
+      })
+      .into('PROJECTS');
   }
 }

@@ -32,8 +32,8 @@ describe('project resolvers', () => {
         );
         expect(mockUpsertProject).toHaveBeenCalledWith(
           dataSources.sqlToggleAPI,
-          name, 
-          owner, 
+          name,
+          owner,
           toggles,
           true
         );
