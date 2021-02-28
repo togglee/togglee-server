@@ -7,11 +7,11 @@ jest.mock('../../../src/utils/logger', () => ({
   },
 }));
 
-import upsertToggle from '../../../src/commands/project/upsert';
+import upsertProject from '../../../src/commands/project/upsert';
 import * as faker from 'faker';
 import sqlDatabase from '../../../src/dataSources/project/SqlDatabase';
 
-describe('upsert toggle', () => {
+describe('upsert project', () => {
   const sqlDataSource = {
     upsert: jest.fn(),
   };
@@ -19,7 +19,7 @@ describe('upsert toggle', () => {
   const getSqlDataSourceFromMock = (): sqlDatabase =>
     (sqlDataSource as unknown) as sqlDatabase;
 
-  describe('upsert toggle correctly', () => {
+  describe('upsert project correctly', () => {
     const name = faker.random.uuid();
     const owner = faker.random.uuid();
     const toggles = faker.random.uuid();
@@ -29,7 +29,7 @@ describe('upsert toggle', () => {
     beforeAll(async () => {
       sqlDataSource.upsert.mockReset();
       sqlDataSource.upsert.mockResolvedValue(undefined);
-      result = await upsertToggle(
+      result = await upsertProject(
         getSqlDataSourceFromMock(),
         name,
         owner,
@@ -64,7 +64,7 @@ describe('upsert toggle', () => {
       sqlDataSource.upsert.mockReset();
       mockErrorLogger.mockReset();
       sqlDataSource.upsert.mockRejectedValue(expectedError);
-      result = await upsertToggle(
+      result = await upsertProject(
         getSqlDataSourceFromMock(),
         name,
         owner,

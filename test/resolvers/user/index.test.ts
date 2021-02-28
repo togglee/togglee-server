@@ -20,7 +20,7 @@ describe('user resolvers', () => {
   const password = faker.random.uuid();
   const dataSources: DataSources = {
     sqlUserAPI: faker.random.uuid(),
-    sqlToggleAPI: faker.random.uuid(),
+    sqlProjectAPI: faker.random.uuid(),
   };
 
   beforeAll(() => {

@@ -1,8 +1,8 @@
 import { DataSource } from 'apollo-datasource';
 import UserSqlDatabase from '../dataSources/user/SqlDatabase';
-import ToggleSqlDatabase from '../dataSources/project/SqlDatabase';
+import ProjectSqlDatabase from '../dataSources/project/SqlDatabase';
 
 export type DataSources = {
   sqlUserAPI: DataSource & UserSqlDatabase;
-  sqlToggleAPI: DataSource & ToggleSqlDatabase;
+  sqlProjectAPI: DataSource & ProjectSqlDatabase;
 };

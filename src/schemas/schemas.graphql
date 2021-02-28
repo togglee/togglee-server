@@ -7,4 +7,5 @@ type Query {
 type Mutation {
     createUser(email: String!, password: String!): SimpleResponse!
     validateCredentialsUser(email: String!, password: String!): SimpleResponse!
+    upsertProject(name: : String!, owner: : String!, toggles: Array[Object]!): SimpleResponse!
 }

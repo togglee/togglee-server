@@ -15,7 +15,7 @@ describe('project resolvers', () => {
   const toggles = faker.random.uuid();
   const dataSources: DataSources = {
     sqlUserAPI: faker.random.uuid(),
-    sqlToggleAPI: faker.random.uuid(),
+    sqlProjectAPI: faker.random.uuid(),
   };
 
   beforeAll(() => {
@@ -25,13 +25,13 @@ describe('project resolvers', () => {
   describe('Mutation', () => {
     describe('Upsert', () => {
       test('should have create with the call to sqlDatabase with parameters', async () => {
-        await resolvers.Mutation.upsertToggle(
+        await resolvers.Mutation.upsertProject(
           undefined,
           { name, owner, toggles },
           { dataSources, isTestRequest: true }
         );
         expect(mockUpsertProject).toHaveBeenCalledWith(
-          dataSources.sqlToggleAPI,
+          dataSources.sqlProjectAPI,
           name,
           owner,
           toggles,

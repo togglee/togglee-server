@@ -2,7 +2,7 @@ import sqlProjectDatabase from '../../dataSources/project/SqlDatabase';
 import logger from '../../utils/logger';
 import { SimpleResponse } from '../../types/simpleResponse';
 
-export default async function upsertToggle(
+export default async function upsertProject(
   dataSource: sqlProjectDatabase,
   name: string,
   owner: string,

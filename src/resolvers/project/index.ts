@@ -5,7 +5,7 @@ import { DataSources } from '../../types/DataSources';
 export default ({
   Query: {},
   Mutation: {
-    upsertToggle: async (
+    upsertProject: async (
       _,
       { name, owner, toggles }: { name: string; owner: string; toggles: any }, // eslint-disable-line
       {
@@ -14,7 +14,7 @@ export default ({
       }: { dataSources: DataSources; isTestRequest: boolean }
     ) =>
       await upsert(
-        dataSources.sqlToggleAPI,
+        dataSources.sqlProjectAPI,
         name,
         owner,
         toggles,
