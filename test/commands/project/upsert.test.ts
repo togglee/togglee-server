@@ -7,9 +7,9 @@ jest.mock('../../../src/utils/logger', () => ({
   },
 }));
 
-import upsertToggle from '../../../src/commands/toggle/upsert';
+import upsertToggle from '../../../src/commands/project/upsert';
 import * as faker from 'faker';
-import sqlDatabase from '../../../src/dataSources/toggle/SqlDatabase';
+import sqlDatabase from '../../../src/dataSources/project/SqlDatabase';
 
 describe('upsert toggle', () => {
   const sqlDataSource = {
@@ -20,7 +20,7 @@ describe('upsert toggle', () => {
     (sqlDataSource as unknown) as sqlDatabase;
 
   describe('upsert toggle correctly', () => {
-    const id = faker.random.uuid();
+    const name = faker.random.uuid();
     const owner = faker.random.uuid();
     const toggles = faker.random.uuid();
     let result;
@@ -31,7 +31,7 @@ describe('upsert toggle', () => {
       sqlDataSource.upsert.mockResolvedValue(undefined);
       result = await upsertToggle(
         getSqlDataSourceFromMock(),
-        id,
+        name,
         owner,
         toggles,
         isTestRequest
@@ -40,21 +40,21 @@ describe('upsert toggle', () => {
 
     test('should call database', () => {
       expect(sqlDataSource.upsert).toHaveBeenCalledWith(
-        id,
+        name,
         owner,
         toggles,
         isTestRequest
       );
     });
 
-    test('should return success response with expected id', () => {
+    test('should return success response with expected name', () => {
       expect(result).toEqual({ success: true });
     });
   });
 
   describe('error creating user', () => {
     let result;
-    const id = faker.random.uuid();
+    const name = faker.random.uuid();
     const owner = faker.random.uuid();
     const toggles = faker.random.uuid();
     const expectedError = faker.random.uuid();
@@ -66,7 +66,7 @@ describe('upsert toggle', () => {
       sqlDataSource.upsert.mockRejectedValue(expectedError);
       result = await upsertToggle(
         getSqlDataSourceFromMock(),
-        id,
+        name,
         owner,
         toggles,
         isTestRequest
@@ -74,7 +74,7 @@ describe('upsert toggle', () => {
     });
     test('should call database', () => {
       expect(sqlDataSource.upsert).toHaveBeenCalledWith(
-        id,
+        name,
         owner,
         toggles,
         isTestRequest
@@ -85,7 +85,7 @@ describe('upsert toggle', () => {
       expect(mockErrorLogger).toHaveBeenCalledWith(expectedError);
     });
 
-    test('should return success response with expected id', () => {
+    test('should return success response with expected name', () => {
       expect(result).toEqual({ success: false });
     });
   });

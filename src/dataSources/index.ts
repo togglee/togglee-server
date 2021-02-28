@@ -1,6 +1,6 @@
 import { DataSource } from 'apollo-datasource';
 import SqlUserDatabase from './user/SqlDatabase';
-import SqlToggleDatabase from './toggle/SqlDatabase';
+import SqlToggleDatabase from './project/SqlDatabase';
 import { DataSources } from '../types/DataSources';
 import { DataConfig } from 'datasource-sql';
 

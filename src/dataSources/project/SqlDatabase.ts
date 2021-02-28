@@ -1,5 +1,5 @@
 /// <reference types="../../../types/index" />
-// import { v4 } from 'uuid';
+import { v4 } from 'uuid';
 import { SQLDataSource, DataConfig } from 'datasource-sql';
 
 export default class SqlDatabase extends SQLDataSource {
@@ -10,11 +10,20 @@ export default class SqlDatabase extends SQLDataSource {
   }
 
   public async upsert(
-    id: string,
     user: string,
+    name: string,
     toggles: any,
     isTestRequest: boolean
   ): Promise<void> {
-    throw new Error("Not Implemented");
+    const id = v4();
+    await this.db
+    .insert({
+      id,
+      name,
+      user,
+      toggles,
+      isTest: isTestRequest ? 1 : 0,
+    })
+    .into('PROJECTS');
   }
 }

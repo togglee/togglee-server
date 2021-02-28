@@ -1,16 +1,16 @@
-const mockUpsertToggle = jest.fn();
+const mockUpsertProject = jest.fn();
 
-jest.mock('../../../src/commands/toggle/upsert', () => ({
+jest.mock('../../../src/commands/project/upsert', () => ({
   __esModule: true,
-  default: mockUpsertToggle,
+  default: mockUpsertProject,
 }));
 
-import resolvers from '../../../src/resolvers/toggle';
+import resolvers from '../../../src/resolvers/project';
 import * as faker from 'faker';
 import { DataSources } from '../../../src/types/DataSources';
 
-describe('user resolvers', () => {
-  const id = faker.random.uuid();
+describe('project resolvers', () => {
+  const name = faker.random.uuid();
   const owner = faker.random.uuid();
   const toggles = faker.random.uuid();
   const dataSources: DataSources = {
@@ -19,7 +19,7 @@ describe('user resolvers', () => {
   };
 
   beforeAll(() => {
-    mockUpsertToggle.mockReset();
+    mockUpsertProject.mockReset();
   });
 
   describe('Mutation', () => {
@@ -27,12 +27,12 @@ describe('user resolvers', () => {
       test('should have create with the call to sqlDatabase with parameters', async () => {
         await resolvers.Mutation.upsertToggle(
           undefined,
-          { id, owner, toggles },
+          { name, owner, toggles },
           { dataSources, isTestRequest: true }
         );
-        expect(mockUpsertToggle).toHaveBeenCalledWith(
+        expect(mockUpsertProject).toHaveBeenCalledWith(
           dataSources.sqlToggleAPI,
-          id, 
+          name, 
           owner, 
           toggles,
           true
