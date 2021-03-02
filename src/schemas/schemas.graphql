@@ -1,10 +1,11 @@
 # import SimpleResponse from "simpleResponse.graphql"
 # import WithIdResponse from "withIdResponse.graphql"
+# import User from "user.graphql"
 
 scalar Any
 
 type Query {
-    empty: String
+    user(id: String!): User
 }
 
 type Mutation {

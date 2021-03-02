@@ -1,10 +1,17 @@
 import create from '../../commands/user/create';
 import validateCredentials from '../../commands/user/validateCredentials';
+import getUserById from '../../commands/user/getUserById';
 import UserResolver from '../../types/UserResolver';
 import { DataSources } from '../../types/DataSources';
 
 export default ({
-  Query: {},
+  Query: {
+    user: async (_,
+      { id }: { id: string },
+      {
+        dataSources
+      }: { dataSources: DataSources }) => await getUserById(dataSources.sqlUserAPI, id)
+  },
   Mutation: {
     createUser: async (
       _,
