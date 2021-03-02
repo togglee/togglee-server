@@ -2,6 +2,7 @@
 import { v4 } from 'uuid';
 import { SQLDataSource, DataConfig } from 'datasource-sql';
 import { hash, compare } from 'bcrypt';
+import { User } from '../../types/User';
 
 export default class SqlDatabase extends SQLDataSource {
   saltRounds = 10;
@@ -27,17 +28,19 @@ export default class SqlDatabase extends SQLDataSource {
       .into('USERS');
   }
 
-  public async validateCredentials(
+  public async getWithEmailAndPassword(
     email: string,
     password: string
-  ): Promise<boolean> {
+  ): Promise<User> {
     const queryResult = await this.db
       .select('*')
       .from('USERS')
       .where({ email });
-    return (
+    if (
       queryResult.length !== 0 &&
       (await compare(password, queryResult[0].password))
-    );
+    )
+      return queryResult[0];
+    else throw new Error('User or credentials do not match');
   }
 }

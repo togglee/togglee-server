@@ -1,0 +1,4 @@
+type WithIdResponse {
+    success: Boolean!
+    id: String
+}

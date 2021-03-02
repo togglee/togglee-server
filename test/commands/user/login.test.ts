@@ -13,7 +13,7 @@ import sqlDatabase from '../../../src/dataSources/user/SqlDatabase';
 
 describe('validate credentials user', () => {
   const sqlDataSource = {
-    validateCredentials: jest.fn(),
+    getWithEmailAndPassword: jest.fn(),
   };
 
   const getSqlDataSourceFromMock = (): sqlDatabase =>
@@ -25,8 +25,8 @@ describe('validate credentials user', () => {
     const password = faker.random.uuid();
 
     beforeAll(async () => {
-      sqlDataSource.validateCredentials.mockReset();
-      sqlDataSource.validateCredentials.mockResolvedValue(true);
+      sqlDataSource.getWithEmailAndPassword.mockReset();
+      sqlDataSource.getWithEmailAndPassword.mockResolvedValue(true);
       result = await validateCredentials(
         getSqlDataSourceFromMock(),
         email,
@@ -35,7 +35,7 @@ describe('validate credentials user', () => {
     });
 
     test('should call database', () => {
-      expect(sqlDataSource.validateCredentials).toHaveBeenCalledWith(
+      expect(sqlDataSource.getWithEmailAndPassword).toHaveBeenCalledWith(
         email,
         password
       );
@@ -54,9 +54,9 @@ describe('validate credentials user', () => {
     const isTestRequest = false;
 
     beforeAll(async () => {
-      sqlDataSource.validateCredentials.mockReset();
+      sqlDataSource.getWithEmailAndPassword.mockReset();
       mockErrorLogger.mockReset();
-      sqlDataSource.validateCredentials.mockRejectedValue(expectedError);
+      sqlDataSource.getWithEmailAndPassword.mockRejectedValue(expectedError);
       result = await validateCredentials(
         getSqlDataSourceFromMock(),
         email,
@@ -64,7 +64,7 @@ describe('validate credentials user', () => {
       );
     });
     test('should call database', () => {
-      expect(sqlDataSource.validateCredentials).toHaveBeenCalledWith(
+      expect(sqlDataSource.getWithEmailAndPassword).toHaveBeenCalledWith(
         email,
         password
       );

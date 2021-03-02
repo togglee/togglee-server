@@ -57,16 +57,24 @@ describe('sqlDatabase', () => {
     });
 
     test('should be able to login a user with correct password', async () => {
-      const result = await subject.validateCredentials(userEmail, userPassword);
-      expect(result).toEqual(true);
+      const expectedUser = await getUserbyEmail(userEmail);
+      const result = await subject.getWithEmailAndPassword(
+        userEmail,
+        userPassword
+      );
+      expect(result).toEqual(expectedUser);
     });
 
     test('should not be able to login a user with incorrect password', async () => {
-      const result = await subject.validateCredentials(
-        userEmail,
-        faker.internet.password()
-      );
-      expect(result).toEqual(false);
+      try {
+        const result = await subject.getWithEmailAndPassword(
+          userEmail,
+          faker.internet.password()
+        );
+        expect(true).toEqual(false);
+      } catch (error) {
+        expect(error).toEqual(Error('User or credentials do not match'));
+      }
     });
   });
 
