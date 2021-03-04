@@ -1,5 +1,8 @@
+# import Project from "project.graphql"
+
 type User {
-    id: String,
+    id: ID,
     email: String,
-    isTest: Int
+    isTest: Int,
+    projects: [Project]
 }

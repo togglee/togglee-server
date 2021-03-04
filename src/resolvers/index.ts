@@ -6,5 +6,8 @@ const Mutation = { ...user.Mutation, ...project.Mutation };
 
 export default {
   Query,
+  User: {
+    projects: project.projects
+  },
   Mutation,
 };

@@ -1,29 +1,57 @@
 /// <reference types="../../../types/index" />
 import { v4 } from 'uuid';
 import { SQLDataSource, DataConfig } from 'datasource-sql';
+import { Project } from '../../types/Project';
+import logger from '../../utils/logger';
 
 export default class SqlDatabase extends SQLDataSource {
-  saltRounds = 10;
 
   constructor(config: DataConfig) {
     super(config);
   }
 
   public async upsert(
-    user: string,
     name: string,
+    user: string,
     toggles: any, // eslint-disable-line
     isTestRequest: boolean
   ): Promise<void> {
     const id = v4();
-    await this.db
+    try {
+      await this.db
       .insert({
         id,
         name,
-        user,
-        toggles,
+        userReference: user,
+        toggles: JSON.stringify(toggles),
         isTest: isTestRequest ? 1 : 0,
       })
-      .into('PROJECTS');
+      .into('PROJECTS')
+    } catch (error) {
+      await this.db('PROJECTS')
+      .update({
+        toggles: JSON.stringify(toggles),
+      })
+      .where({
+        name,
+        userReference: user,
+      })
+    }
   }
+
+  public async getProjectsByUserId(userId: string): Promise<Project[]> {
+    const queryResult = await this.db
+      .select('*')
+      .from('PROJECTS')
+      .where({ userReference: userId });
+      logger.info(JSON.stringify(queryResult))
+    return queryResult.map(dbProject => ({
+      name: dbProject.name,
+      id: dbProject.id,
+      owner: dbProject.userReference,
+      toggles: dbProject.toggles,
+      isTest: dbProject.isTest
+    }))
+  }
+
 }
