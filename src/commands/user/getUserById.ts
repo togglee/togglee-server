@@ -5,7 +5,7 @@ import { User } from '../../types/User';
 export default async function getUserById(
   dataSource: sqlUserDatabase,
   id: string
-): Promise< User | void > {
+): Promise<User | void> {
   try {
     return await dataSource.getUserById(id);
   } catch (error) {

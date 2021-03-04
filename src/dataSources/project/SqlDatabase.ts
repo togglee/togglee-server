@@ -4,7 +4,6 @@ import { SQLDataSource, DataConfig } from 'datasource-sql';
 import { Project } from '../../types/Project';
 
 export default class SqlDatabase extends SQLDataSource {
-
   constructor(config: DataConfig) {
     super(config);
   }
@@ -18,23 +17,23 @@ export default class SqlDatabase extends SQLDataSource {
     const id = v4();
     try {
       await this.db
-      .insert({
-        id,
-        name,
-        userReference: user,
-        toggles: JSON.stringify(toggles),
-        isTest: isTestRequest ? 1 : 0,
-      })
-      .into('PROJECTS')
+        .insert({
+          id,
+          name,
+          userReference: user,
+          toggles: JSON.stringify(toggles),
+          isTest: isTestRequest ? 1 : 0,
+        })
+        .into('PROJECTS');
     } catch (error) {
       await this.db('PROJECTS')
-      .update({
-        toggles: JSON.stringify(toggles),
-      })
-      .where({
-        name,
-        userReference: user,
-      })
+        .update({
+          toggles: JSON.stringify(toggles),
+        })
+        .where({
+          name,
+          userReference: user,
+        });
     }
   }
 
@@ -43,13 +42,12 @@ export default class SqlDatabase extends SQLDataSource {
       .select('*')
       .from('PROJECTS')
       .where({ userReference: userId });
-    return queryResult.map(dbProject => ({
+    return queryResult.map((dbProject) => ({
       name: dbProject.name,
       id: dbProject.id,
       owner: dbProject.userReference,
       toggles: dbProject.toggles,
-      isTest: dbProject.isTest
-    }))
+      isTest: dbProject.isTest,
+    }));
   }
-
 }

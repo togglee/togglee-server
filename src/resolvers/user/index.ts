@@ -6,11 +6,11 @@ import { DataSources } from '../../types/DataSources';
 
 export default ({
   Query: {
-    user: async (_,
+    user: async (
+      _,
       { id }: { id: string },
-      {
-        dataSources
-      }: { dataSources: DataSources }) => await getUserById(dataSources.sqlUserAPI, id)
+      { dataSources }: { dataSources: DataSources }
+    ) => await getUserById(dataSources.sqlUserAPI, id),
   },
   Mutation: {
     createUser: async (

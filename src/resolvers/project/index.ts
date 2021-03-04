@@ -9,11 +9,8 @@ export default ({
   projects: async (
     user: User,
     _,
-    {
-      dataSources,
-    }: { dataSources: DataSources }
-    ) =>  await getProjectsByUserId(dataSources.sqlProjectAPI, user.id)
-  ,
+    { dataSources }: { dataSources: DataSources }
+  ) => await getProjectsByUserId(dataSources.sqlProjectAPI, user.id),
   Mutation: {
     upsertProject: async (
       _,

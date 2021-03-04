@@ -4,5 +4,3 @@ export type User = {
   password: string;
   isTest: number;
 };
-
-

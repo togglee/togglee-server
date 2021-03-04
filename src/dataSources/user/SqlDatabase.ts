@@ -44,14 +44,9 @@ export default class SqlDatabase extends SQLDataSource {
     else throw new Error('User or credentials do not match');
   }
 
-
   public async getUserById(id: string): Promise<User> {
-    const queryResult = await this.db
-      .select('*')
-      .from('USERS')
-      .where({ id });
-    if (queryResult.length !== 0)
-      return queryResult[0];
+    const queryResult = await this.db.select('*').from('USERS').where({ id });
+    if (queryResult.length !== 0) return queryResult[0];
     throw new Error('Unable To find user');
   }
 }
