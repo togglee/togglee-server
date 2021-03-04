@@ -2,7 +2,6 @@
 import { v4 } from 'uuid';
 import { SQLDataSource, DataConfig } from 'datasource-sql';
 import { Project } from '../../types/Project';
-import logger from '../../utils/logger';
 
 export default class SqlDatabase extends SQLDataSource {
 
@@ -44,7 +43,6 @@ export default class SqlDatabase extends SQLDataSource {
       .select('*')
       .from('PROJECTS')
       .where({ userReference: userId });
-      logger.info(JSON.stringify(queryResult))
     return queryResult.map(dbProject => ({
       name: dbProject.name,
       id: dbProject.id,

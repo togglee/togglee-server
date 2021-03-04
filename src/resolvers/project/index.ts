@@ -3,7 +3,6 @@ import ProjectResolver from '../../types/ProjectResolver';
 import { DataSources } from '../../types/DataSources';
 import { User } from '../../types/User';
 import getProjectsByUserId from '../../commands/project/getProjectsByUserId';
-import logger from '../../utils/logger';
 
 export default ({
   Query: {},

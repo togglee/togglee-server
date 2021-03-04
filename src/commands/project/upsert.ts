@@ -11,7 +11,7 @@ export default async function upsertProject(
   isTestRequest: boolean
 ): Promise<SimpleResponse> {
   try {
-    //await uploadFile(name, owner, toggles, isTestRequest);
+    await uploadFile(name, owner, toggles, isTestRequest);
     await dataSource.upsert(name, owner, toggles, isTestRequest);
     return { success: true };
   } catch (error) {
