@@ -7,7 +7,7 @@ CREATE TABLE PROJECTS(
    CONSTRAINT fk_userReference
       FOREIGN KEY(userReference) 
       REFERENCES USERS(id)
-      ON DELETE CASCADE
+      ON DELETE CASCADE,
    CONSTRAINT unique_userReference_name
       UNIQUE(userReference,name)
 );
