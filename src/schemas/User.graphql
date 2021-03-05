@@ -1,8 +1,0 @@
-# import Project from "project.graphql"
-
-type User {
-    id: ID,
-    email: String,
-    isTest: Int,
-    projects: [Project]
-}
