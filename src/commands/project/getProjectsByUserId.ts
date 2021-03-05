@@ -1,5 +1,4 @@
 import logger from '../../utils/logger';
-import { User } from '../../types/User';
 import sqlProjectDatabase from '../../dataSources/project/SqlDatabase';
 import { Project } from '../../types/Project';
 
