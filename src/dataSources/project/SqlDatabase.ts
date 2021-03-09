@@ -1,7 +1,7 @@
 /// <reference types="../../../types/index" />
 import { v4 } from 'uuid';
 import { SQLDataSource, DataConfig } from 'datasource-sql';
-import { Project } from '../../types/Project';
+import { DBProject } from '../../types/Project';
 
 export default class SqlDatabase extends SQLDataSource {
   constructor(config: DataConfig) {
@@ -37,7 +37,7 @@ export default class SqlDatabase extends SQLDataSource {
     }
   }
 
-  public async getProjectsByUserId(userId: string): Promise<Project[]> {
+  public async getProjectsByUserId(userId: string): Promise<DBProject[]> {
     const queryResult = await this.db
       .select('*')
       .from('PROJECTS')

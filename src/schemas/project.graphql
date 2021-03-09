@@ -3,5 +3,6 @@ type Project {
     owner: ID,
     name: String,
     toggles: String,
+    url: String,
     isTest: Int
 }
