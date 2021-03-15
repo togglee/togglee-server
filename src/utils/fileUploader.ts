@@ -1,5 +1,4 @@
-// import { Endpoint, S3 } from 'aws-sdk';
-const AWS = require('aws-sdk')
+const AWS = require('aws-sdk'); // eslint-disable-line
 
 const spacesEndpoint = new AWS.Endpoint('ams3.digitaloceanspaces.com');
 const s3 = new AWS.S3({
