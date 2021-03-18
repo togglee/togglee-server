@@ -38,10 +38,13 @@ export default class SqlDatabase extends SQLDataSource {
   }
 
   public async getProjectsByUserId(userId: string): Promise<DBProject[]> {
+    console.log(`getting projects for ${userId}`)
     const queryResult = await this.db
       .select('*')
       .from('PROJECTS')
       .where({ userReference: userId });
+    console.log("the query result is:")
+    console.log(queryResult)
     return queryResult.map((dbProject) => ({
       name: dbProject.name,
       id: dbProject.id,
