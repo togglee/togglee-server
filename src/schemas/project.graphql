@@ -1,8 +1,10 @@
+scalar Any
+
 type Project {
     id: ID,
     owner: ID,
     name: String,
-    toggles: String,
+    toggles: Any,
     url: String,
     isTest: Int
 }
