@@ -23,7 +23,7 @@ export default class SqlDatabase extends SQLDataSource {
         id,
         email,
         password: hashPassword,
-        isTest: isTestRequest ? 1 : 0,
+        istest: isTestRequest ? 1 : 0,
       })
       .into('USERS');
   }

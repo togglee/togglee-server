@@ -20,9 +20,9 @@ export default class SqlDatabase extends SQLDataSource {
         .insert({
           id,
           name,
-          userReference: user,
+          userreference: user,
           toggles: JSON.stringify(toggles),
-          isTest: isTestRequest ? 1 : 0,
+          istest: isTestRequest ? 1 : 0,
         })
         .into('PROJECTS');
     } catch (error) {
@@ -48,9 +48,9 @@ export default class SqlDatabase extends SQLDataSource {
     return queryResult.map((dbProject) => ({
       name: dbProject.name,
       id: dbProject.id,
-      owner: dbProject.userReference,
+      owner: dbProject.userreference,
       toggles: JSON.parse(dbProject.toggles),
-      isTest: dbProject.isTest,
+      isTest: dbProject.istest,
     }));
   }
 }
