@@ -9,9 +9,9 @@ export default async function getProjectsByUserId(
   userId: string
 ): Promise<Project[]> {
   try {
-    console.log("retrieving project for user")
+    console.log('retrieving project for user');
     const projects = await dataSource.getProjectsByUserId(userId);
-    console.log(projects)
+    console.log(projects);
     return projects.map((project) => ({
       ...project,
       url: `${baseUrl}/${project.owner}/${project.name}.json`,

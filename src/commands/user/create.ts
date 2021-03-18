@@ -9,8 +9,8 @@ export default async function createUser(
   isTestRequest: boolean
 ): Promise<SimpleResponse> {
   try {
-    console.log("creating user")
-    console.log(email)
+    console.log('creating user');
+    console.log(email);
     await dataSource.create(email, password, isTestRequest);
     return { success: true };
   } catch (error) {
