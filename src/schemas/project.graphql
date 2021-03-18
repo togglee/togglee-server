@@ -4,7 +4,7 @@ type Project {
     id: ID,
     owner: ID,
     name: String,
-    toggles: Any,
+    toggles: [Any],
     url: String,
     isTest: Int
 }
