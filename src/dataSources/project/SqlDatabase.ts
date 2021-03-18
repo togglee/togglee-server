@@ -21,14 +21,14 @@ export default class SqlDatabase extends SQLDataSource {
           id,
           name,
           userReference: user,
-          toggles,
+          toggles: JSON.stringify(toggles),
           isTest: isTestRequest ? 1 : 0,
         })
         .into('PROJECTS');
     } catch (error) {
       await this.db('PROJECTS')
         .update({
-          toggles,
+          toggles: JSON.stringify(toggles),
         })
         .where({
           name,
@@ -49,7 +49,7 @@ export default class SqlDatabase extends SQLDataSource {
       name: dbProject.name,
       id: dbProject.id,
       owner: dbProject.userReference,
-      toggles: dbProject.toggles,
+      toggles: JSON.parse(dbProject.toggles),
       isTest: dbProject.isTest,
     }));
   }
