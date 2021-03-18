@@ -46,7 +46,7 @@ export default class SqlDatabase extends SQLDataSource {
       name: dbProject.name,
       id: dbProject.id,
       owner: dbProject.userReference,
-      toggles: dbProject.toggles,
+      toggles: JSON.parse(dbProject.toggles),
       isTest: dbProject.isTest,
     }));
   }
